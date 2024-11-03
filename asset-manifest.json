@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/course-task-react.git/static/css/main.90aae009.css",
+    "main.js": "/course-task-react.git/static/js/main.11d693c7.js",
+    "static/media/avatar.png": "/course-task-react.git/static/media/avatar.0d14c6999b4a5c8e86a7.png",
+    "static/media/imageNotFound.png": "/course-task-react.git/static/media/imageNotFound.298b98203c3825c61303.png",
+    "static/media/cart.svg": "/course-task-react.git/static/media/cart.5a1c3c755c07e59db7d65be6bc8d8bfb.svg",
+    "index.html": "/course-task-react.git/index.html",
+    "main.90aae009.css.map": "/course-task-react.git/static/css/main.90aae009.css.map",
+    "main.11d693c7.js.map": "/course-task-react.git/static/js/main.11d693c7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.90aae009.css",
+    "static/js/main.11d693c7.js"
+  ]
+}
