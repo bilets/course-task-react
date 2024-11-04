@@ -20,29 +20,33 @@ export default function App() {
   const [cart, setCart] = useState([]);
 
   const addToCartHandler = (e) => {
-    let f = false;
-    !cart.length
-      ? setCart([e])
-      : cart.forEach((item) => {
-          if (item.title === e.title) {
-            item.count = Number.parseFloat(item.count) + Number.parseInt(e.count);
-            item.total = (Number.parseFloat(item.total) + Number.parseFloat(e.total)).toFixed(2);
-            f = true;
-          }
-        });
-    f ? setCart(cart) : setCart([...cart, e]);
+    const updatedCart = cart.map((item) => {
+      if (item.title === e.title) {
+        return {
+          ...item,
+          count: Number.parseInt(item.count) + Number.parseInt(e.count),
+          total: (
+            Number.parseFloat(item.total) + Number.parseFloat(e.total)
+          ).toFixed(2),
+        };
+      }
+      return item;
+    });
+
+    const itemExists = cart.some((item) => item.title === e.title);
+    setCart(itemExists ? updatedCart : [...cart, e]);
   };
 
   const resetCartHandler = () => {
     setCart([]);
   };
   return (
-    <div className='App'>
+    <div className="App">
       <CartContext.Provider value={cart}>
         <HashRouter>
           <Routes>
             <Route
-              path='/'
+              path="/"
               element={
                 <MainLayout
                   username={username}
@@ -51,21 +55,37 @@ export default function App() {
                 />
               }
             >
-              <Route index element={<SignIn addUsername={addUsernameHandler} />} />
-
-              <Route path='books' element={username ? <BookList /> : <Navigate to='/' />} />
               <Route
-                path='books/:title'
+                index
+                element={<SignIn addUsername={addUsernameHandler} />}
+              />
+
+              <Route
+                path="books"
+                element={username ? <BookList /> : <Navigate to="/" />}
+              />
+              <Route
+                path="books/:title"
                 element={
-                  username ? <SpecificBook addToCart={addToCartHandler} /> : <Navigate to='/' />
+                  username ? (
+                    <SpecificBook addToCart={addToCartHandler} />
+                  ) : (
+                    <Navigate to="/" />
+                  )
                 }
               />
               <Route
-                path='cart'
-                element={username ? <Cart resetCart={resetCartHandler} /> : <Navigate to='/' />}
+                path="cart"
+                element={
+                  username ? (
+                    <Cart resetCart={resetCartHandler} />
+                  ) : (
+                    <Navigate to="/" />
+                  )
+                }
               />
             </Route>
-            <Route path='*' element={<NotFoundPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </HashRouter>
       </CartContext.Provider>
