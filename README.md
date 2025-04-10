@@ -1,5 +1,4 @@
-This is my course project "Book online store" which is available at the link 
-https://bilets.github.io/course-task-react/                                                 
+This is my course project "Book online store"                                          
 The project was done according following requirements 
 https://github.com/bilets/course-task-react/blob/master/course-project-requirements.pdf
 
